@@ -39,7 +39,8 @@ class SEOstats_Google extends SEOstats {
      */
     public static function googleTotal2($query)
     {
-        $url  = 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&rsz=1&q='.$query;
+       #$url  = 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&rsz=1&q='.$query;
+        $url = 'https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q='.$query.'&userip='.$_SERVER['REMOTE_ADDR'];
         $str  = SEOstats::cURL($url);
         $data = json_decode($str);
 
