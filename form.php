@@ -6,6 +6,10 @@
 
 		<link rel="stylesheet" type="text/css" href="assets/main.css">
 		<script src="assets/jquery-1.8.2.min.js"></script>
+
+		<script src="assets/fancyapps-fancyBox/source/jquery.fancybox.pack.js"></script>
+		<link rel="stylesheet" type="text/css" href="assets/fancyapps-fancyBox/source/jquery.fancybox.css">
+
 		<script src="assets/main.js"></script>
 	</head>
 	<body>

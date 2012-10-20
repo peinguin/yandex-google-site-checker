@@ -59,13 +59,28 @@ class SEOstats_Google extends SEOstats {
      */
     public static function googleTotal($query)
     {
-        $url = 'http://www.google.'. GOOGLE_TLD .'/custom?num=1&q='.$query;
-        $str = SEOstats::cURL($url);
-        preg_match_all('#<b>(.*?)</b>#',$str,$matches);
+       # $url = 'http://www.google.'. GOOGLE_TLD .'/custom?num=1&q='.$query;
+        #$url = 'https://www.google.com/#hl=en&sclient=psy-ab&q='.$query.'&oq='.$query.'&gs_l=serp.3...29005.29779.0.29962.12.8.0.0.0.0.196.1081.0j7.7.0.eesh..0.0...1.1.TJUtZqmTXLg&pbx=1&bav=on.2,or.r_gc.r_pw.r_cp.r_qf.&fp=dc3e97eeeb090d8c&bpcl=35466521&biw=1920&bih=908';
+        
+        $url = 'https://www.google.com.ua/search?hl=en&sclient=psy-ab&q='.$query.'&oq='.$query.'&gs_l=serp.3...29005.29779.0.29962.12.8.0.0.0.0.196.1081.0j7.7.0.eesh..0.0...1.1.TJUtZqmTXLg&pbx=1&bav=on.2,or.r_gc.r_pw.r_cp.r_qf.&fp=dc3e97eeeb090d8c&bpcl=35466521&biw=1920&bih=908&tch=1&ech=1&psi=IEiCULWFIImytAbjkIGoAQ.1350715428679.3';
 
-        return (!empty($matches[1][2]))
-                ? $matches[1][2]
-                : '0';
+        $stop = false;
+        $i = 0;
+        do{
+            $str = SEOstats::cURL($url);
+            if(preg_match('/About\s([\d,]+)\sresults/', $str,$out)){
+                return $out[1];
+            }else{
+                if(preg_match('/u:"([^"]+)"/', $str,$out)){
+                    $url=html_entity_decode(urldecode(str_replace('\x', '%', $out[1])),ENT_QUOTES, "UTF-8");
+                }else{
+                    die('NOT found');
+                }
+
+                if(++$i>5)$stop = true;
+            }
+        }while(!$stop);
+        return $str;
     }
 
     /**
