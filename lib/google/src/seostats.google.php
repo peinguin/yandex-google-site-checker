@@ -74,7 +74,7 @@ class SEOstats_Google extends SEOstats {
                 if(preg_match('/u:"([^"]+)"/', $str,$out)){
                     $url=html_entity_decode(urldecode(str_replace('\x', '%', $out[1])),ENT_QUOTES, "UTF-8");
                 }else{
-                    die('NOT found');
+                    return $str;
                 }
 
                 if(++$i>5)$stop = true;
