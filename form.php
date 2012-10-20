@@ -13,9 +13,10 @@
 		<script src="assets/main.js"></script>
 	</head>
 	<body>
-		<h1>Enter domains</h1>
-		<form method="POST" action="ajax.php">
-		<textarea name="domains" rows="50" cols="20">
+		<div class="urls">
+			<h1>Enter domains</h1>
+			<form method="POST" action="ajax.php">
+			<textarea name="domains" rows="50" cols="20">
 vk.com
 yandex.ru
 google.com
@@ -119,9 +120,10 @@ walmart.com
 pptv.com
 xinhuanet.com
 mediafire.com
-		</textarea><br />
-		<input type="submit" value="check" />
-		</form>
+			</textarea><br />
+			<input type="submit" value="check" />
+			</form>
+		</div>
 		<div id="responce"></div>
 	</body>
 </html>

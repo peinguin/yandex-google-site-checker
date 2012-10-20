@@ -68,7 +68,7 @@ class SEOstats_Google extends SEOstats {
         $i = 0;
         do{
             $str = SEOstats::cURL($url);
-            if(preg_match('/About\s([\d,]+)\sresults/', $str,$out)){
+            if(preg_match('/([\d,]+)\sresults?/', $str,$out)){
                 return $out[1];
             }else{
                 if(preg_match('/u:"([^"]+)"/', $str,$out)){

@@ -102,12 +102,12 @@ class SEOstats
         {
             $valid_response_codes = array('200','301','302');
             $curl_result = $this->get_status_code($this->url);
-            if(in_array($curl_result,$valid_response_codes))
+            if(in_array($curl_result,$valid_response_codes) || 1)
             {
                 $this->host         = parse_url($this->url, PHP_URL_HOST);
                 $this->protocol     = parse_url($this->url, PHP_URL_SCHEME);
             }
-            elseif($curl_result == '0')
+            /*elseif($curl_result == '0')
             {
                 $e = 'Invalid URL > '.$this->url.' returned no response for a HTTP HEAD request, at all. It seems like the Domain does not exist.';
                 $this->errlogtxt($e);
@@ -118,7 +118,7 @@ class SEOstats
                 $e = 'Invalid Request > '.$this->url.' returned a '.$curl_result.' status code.';
                 $this->errlogtxt($e);
                 throw new SEOstatsException($e);
-            }
+            }*/
         }
         else
         {
